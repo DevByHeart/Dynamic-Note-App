@@ -78,40 +78,40 @@ NotesManager.prototype.handleNoteClick = function(evt) {
 };
 
 NotesManager.prototype.init = function(opts) {
-	// cache references to the DOM elements we need to manage
+
 	this.$notes = $(opts.notes);
 	this.$new_note = $(opts.new_note);
 	this.$add_note = $(opts.add_note);
 	this.$help = $(opts.help);
 	this.$open_help = $(opts.open_help);
 
-	// build the initial list from the existing `notes` data
+
 	var html = "";
 	for (i=0; i<this.notes.length; i++) {
 		html += "<a href='#' class='note'>" + this.notes[i] + "</a>";
 	}
 	this.$notes.html(html);
 
-	// listen to "help" button
+
 	this.$open_help.bind("click",this.handleOpenHelp.bind(this));
 
-	// listen to "add" button
+
 	this.$add_note.bind("click",this.handleAddNote.bind(this));
 
-	// listen for <enter> in text box
+
 	this.$new_note.bind("keypress",this.handleEnter.bind(this));
 
-	// listen for clicks outside the notes box
+
 	$(document).bind("click",this.handleDocumentClick.bind(this));
 
-	// listen for clicks on note elements
+
 	this.$notes.on("click",".note",this.handleNoteClick.bind(this));
 };
 
 
 var myNotes = new NotesManager();
 
-// assume this data came from the database
+
 myNotes.loadData([
 	"This is the first note I've taken!",
 	"Now is the time for all good men to come to the aid of their country.",
